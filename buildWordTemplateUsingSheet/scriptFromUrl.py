@@ -16,9 +16,14 @@ doc = DocxTemplate("template.docx")
 
 # Convert images to InlineImage objects
 for order in orders:
-    image_path = order.get("image")
+    image_path = order.get(["live"])
     if image_path:
-        order["image"] = InlineImage(doc, image_path, width=Inches(2))
+        order["live"] = InlineImage(doc, image_path, width=Inches(2))
+
+for order in orders:
+    image_path = order.get(["b"])
+    if image_path:
+        order["b"] = InlineImage(doc, image_path, width=Inches(2))
 
 # Render template
 doc.render({"orders": orders})
